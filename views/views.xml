@@ -1,12 +1,24 @@
 <odoo>
     <data>
-<!--        <record id="crm_lead_view_form_inherit" model="ir.ui.view">-->
-<!--            <field name="name">Crm Lead View Form Inherit</field>-->
-<!--            <field name="model">crm.lead</field>-->
-<!--            <field name="inherit_id" ref="crm.crm_lead_view_form"/>-->
-<!--            <field name="arch" type="xml">-->
-<!--               -->
-<!--            </field>-->
-<!--        </record>-->
+        <record id="crm_lead_view_form_inherit" model="ir.ui.view">
+			<field name="name">Crm Lead View Form Inherit</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="//page[@name='thong_tin_xet_tuyen']" position="after">
+		`			<page string="Thanh toán" name="Thanh_toan">
+						<field name="table_payment" widget="one2many_list">
+							<tree create="true" editable="bottom">
+								<field name="ngay" string="Ngày"/>
+								<field name="so_tien" string="Số tiền"/>
+								<field name="noi_dung_thanh_toan" string="Nội dung thanh toán"/>
+								<field name="dang_thanh_toan" string="Dạng thanh toán"/>
+								<field name="ghi_chu" string="Ghi chú"/>
+							</tree>
+						</field>	
+					</page>			
+				</xpath>
+			</field>	
+		</record>
     </data>
 </odoo>
