@@ -15,28 +15,13 @@ class CrmLead(models.Model):
     ) 
     
     amount_total = fields.Float(string="Total Amount", store=True, compute='_compute_amounts', tracking=5)
-    # @api.depends('order_line.price_subtotal', 'order_line.price_tax', 'order_line.price_total')
+    @api.depends('table_payment.so_tien')
     def _compute_amounts(self):
-        """Compute the total amounts of the SO."""
-        # for order in self:
-            # order_lines = order.order_line.filtered(lambda x: not x.display_type)
-
-            # if order.company_id.tax_calculation_rounding_method == 'round_globally':
-                # tax_results = self.env['account.tax']._compute_taxes([
-                    # line._convert_to_tax_base_line_dict()
-                    # for line in order_lines
-                # ])
-                # totals = tax_results['totals']
-                # amount_untaxed = totals.get(order.currency_id, {}).get('amount_untaxed', 0.0)
-                # amount_tax = totals.get(order.currency_id, {}).get('amount_tax', 0.0)
-            # else:
-                # amount_untaxed = sum(order_lines.mapped('price_subtotal'))
-                # amount_tax = sum(order_lines.mapped('price_tax'))
-
-            # order.amount_untaxed = amount_untaxed
-            # order.amount_tax = amount_tax
-            # order.amount_total = order.amount_untaxed + order.amount_tax
-
+        for lead in self:
+            total_amount = 0.0
+            for payment_line in lead.table_payment:
+                total_amount += payment_line.so_tien
+            lead.amount_total = total_amount
     def write(self, vals):      
         if self.user_id != self.env.user and not self.env.user.has_group('sales_team.group_sale_manager'):
             raise UserError("You cannot edit Opp/Lead of other person")

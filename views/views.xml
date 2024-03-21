@@ -16,7 +16,7 @@
 								<field name="ghi_chu" string="Ghi chú"/>
 							</tree>							
 						</field>
-						<field name="amount_total" widget="monetary"/>						
+						<field name="amount_total"/>						
 					</page>			
 				</xpath>
 			</field>	
