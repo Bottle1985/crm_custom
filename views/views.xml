@@ -14,8 +14,9 @@
 								<field name="noi_dung_thanh_toan" string="Nội dung thanh toán"/>
 								<field name="dang_thanh_toan" string="Dạng thanh toán"/>
 								<field name="ghi_chu" string="Ghi chú"/>
-							</tree>
-						</field>	
+							</tree>							
+						</field>
+						<field name="amount_total" widget="monetary"/>						
 					</page>			
 				</xpath>
 			</field>	
