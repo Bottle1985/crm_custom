@@ -15,6 +15,9 @@ class CrmLead(models.Model):
     ) 
     
     amount_total = fields.Float(string="Total Amount", store=True, compute='_compute_amounts', tracking=5)
+    # amount_total = fields.Monetary(string="Total Amount", store=True, compute='_compute_amounts', tracking=5)
+    
+    """Compute the total amounts of the fee payment."""
     @api.depends('table_payment.so_tien')
     def _compute_amounts(self):
         for lead in self:
