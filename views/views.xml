@@ -1,5 +1,6 @@
 <odoo>
     <data>
+	<!-- Form view definition -->
         <record id="crm_lead_view_form_inherit" model="ir.ui.view">
 			<field name="name">Crm Lead View Form Inherit</field>
             <field name="model">crm.lead</field>
@@ -18,10 +19,10 @@
 						</field>
 						<group name="note_group" col="6" class="mt-2 mt-md-0">
                             <group colspan="4">
-                                <!-- <field  colspan="2" name="note" nolabel="1" placeholder="Terms and conditions..."/> -->
+                                
                             </group>
                             <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
-                                <!-- <field name="tax_totals" widget="account-tax-totals-field" nolabel="1" colspan="2" readonly="1"/> -->
+                                
 								<field name="amount_total" string="Tổng đã thanh toán"/>
                             </group>
                             <div class="clearfix"/>

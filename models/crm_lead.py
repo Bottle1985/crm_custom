@@ -14,7 +14,7 @@ class CrmLead(models.Model):
         string='Payment Lines'
     ) 
     
-    amount_total = fields.Float(string="Total Amount", store=True, compute='_compute_amounts', tracking=5)
+    amount_total = fields.Float(string="Total Amount", store=True, compute='_compute_amounts')
     # amount_total = fields.Monetary(string="Total Amount", store=True, compute='_compute_amounts', tracking=5)
     
     """Compute the total amounts of the fee payment."""
