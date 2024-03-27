@@ -21,13 +21,20 @@
                             <group colspan="4">
                                 
                             </group>
-                            <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
-                                
+                            <group class="oe_subtotal_footer oe_right" colspan="2" name="payment_status">                                
 								<field name="amount_total" string="Tổng đã thanh toán"/>
+								<field name="total_fee" string="Các khoản cần đóng"/>
                             </group>
                             <div class="clearfix"/>
                         </group>
-												
+						<field name="tuition_ids" widget="many2many_list">
+							<tree>
+								<field name="type_id"/>
+								<field name="admission_fee"/>
+								<field name="health_check_fee"/>
+								<field name="insurance"/>
+							</tree>
+						</field>
 					</page>			
 				</xpath>
 			</field>	
