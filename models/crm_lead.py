@@ -14,7 +14,7 @@ class CrmLead(models.Model):
         string='Payment Lines'
     ) 
     tuition_ids = fields.Many2many('crm.cost', string='Tuitions', compute='_load_payment_fee')
-    save_cost_id = fields.Many2one('crm.save.cost', string='Save Cost')
+    # save_cost_id = fields.Many2one('crm.save.cost', string='Save Cost')
     
     amount_total = fields.Float(string="Total Amount", store=True, compute='_compute_amounts')
     total_fee = fields.Float(string='Total Fee', compute='_compute_total_fees')
