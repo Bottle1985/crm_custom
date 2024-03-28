@@ -13,8 +13,8 @@ class CrmLead(models.Model):
         inverse_name='payment_id',
         string='Payment Lines'
     ) 
-    tuition_ids = fields.Many2many('crm.cost', string='Tuitions', compute='_load_payment_fee')
-    # save_cost_id = fields.Many2one('crm.save.cost', string='Save Cost')
+    tuition_ids = fields.Many2one('crm.cost', string='Tuitions', compute='_load_payment_fee')
+    save_cost_id = fields.Many2one('crm.save.cost', string='Save Cost')
     
     amount_total = fields.Float(string="Total Amount", store=True, compute='_compute_amounts')
     total_fee = fields.Float(string='Total Fee', compute='_compute_total_fees')
@@ -34,14 +34,17 @@ class CrmLead(models.Model):
     def _compute_total_fees(self):
         for student in self:
             total_fee = 0.0
-            for tuition in student.tuition_ids:
-                total_fee += tuition.admission_fee + tuition.health_check_fee + tuition.insurance
+            tuition = student.tuition_ids
+            if tuition:
+                total_fee = tuition.admission_fee + tuition.health_check_fee + tuition.insurance
             student.total_fee = total_fee  
     """Load all payment fee to table. This function set table to readonly"""             
     def _load_payment_fee(self):  
-        all_payment = self.env['crm.cost'].search([])
-        for lead in self:            
-            lead.tuition_ids = all_payment 
+        first_payment = self.env['crm.cost'].search([], limit=1, order='id')
+        if first_payment: 
+            self.tuition_ids = first_payment.id
+        else:
+            self.tuition_ids = False    
 
     def write(self, vals):      
         if self.user_id != self.env.user and not self.env.user.has_group('sales_team.group_sale_manager'):

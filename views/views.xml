@@ -19,8 +19,9 @@
 						</field>
 						<group name="note_group" col="6" class="mt-2 mt-md-0">
                             <group colspan="4">
-								<!-- <field name="save_cost_id" string="Loại học bổng"/>	 -->
-								<field name="x_scholarship_type" string="Loại học bổng"/>          
+								<field name="save_cost_id" string="Loại học bổng"/>	
+								<field name="tuition_ids" string="Loại tiền đóng"/>	
+								<!-- <field name="x_scholarship_type" string="Loại học bổng"/>           -->
                             </group>
                             <group class="oe_subtotal_footer oe_right" colspan="2" name="payment_status">                                
 								<field name="amount_total" string="Tổng đã thanh toán"/>
@@ -28,14 +29,14 @@
                             </group>
                             <div class="clearfix"/>
                         </group>
-						<field name="tuition_ids" widget="many2many_list">
-							<tree>
-								<field name="type_id"/>
-								<field name="admission_fee"/>
-								<field name="health_check_fee"/>
-								<field name="insurance"/>
-							</tree>
-						</field>
+						<!-- <field name="tuition_ids" widget="many2many_list"> -->
+							<!-- <tree> -->
+								<!-- <field name="type_id"/> -->
+								<!-- <field name="admission_fee"/> -->
+								<!-- <field name="health_check_fee"/> -->
+								<!-- <field name="insurance"/> -->
+							<!-- </tree> -->
+						<!-- </field> -->
 					</page>			
 				</xpath>
 			</field>	
