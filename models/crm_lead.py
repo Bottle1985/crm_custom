@@ -2,6 +2,7 @@
 
 from odoo import models, fields, api
 from odoo.exceptions import UserError
+from odoo import http
 import logging
 _logger = logging.getLogger(__name__)
 
@@ -63,8 +64,13 @@ class CrmLead(models.Model):
             remain_fee = record.total_fee - record.amount_total - record.reduced_fee
             record.remain_fee = remain_fee
             
-    def write(self, vals):      
-        if self.user_id != self.env.user and not self.env.user.has_group('sales_team.group_sale_manager'):
-            raise UserError("You cannot edit Opp/Lead of other person")
-        else:
+    def write(self, vals):    
+        _logger.error("GET WRitING USER %s", str(self.env.user.user_id))  
+        context = http.request.env.context
+        if 'action' in context:    # Called from a Window action    
+            if self.user_id != self.env.user and not self.env.user.has_group('sales_team.group_sale_manager') : 
+                raise UserError("You cannot edit Opp/Lead of other person")
+            else:
+                return super(CrmLead, self).write(vals)
+        else: # Called from a web controller API
             return super(CrmLead, self).write(vals)

@@ -20,19 +20,16 @@
 						<group name="note_group" col="6" class="mt-2 mt-md-0">
                             <group colspan="4">
 								<field name="save_cost_id" string="Loại học bổng"/>	
-								<field name="tuition_ids" string="Loại tiền đóng"/>
-								
-									
+								<field name="tuition_ids" string="Loại tiền đóng"/>																	
                             </group>
                             <group class="oe_subtotal_footer oe_right" colspan="2" name="payment_status">                                
 								<field name="amount_total" string="Tổng đã thanh toán"/>
-								<field name="total_fee" string="Các khoản cần đóng"/>
+								<field name="total_fee" string="Tổng tiền cần đóng"/>
 								<field name="reduced_fee" string="Tiền được giảm"/>
 								<field name="remain_fee" string="Số tiền còn thiếu"/>
                             </group>
                             <div class="clearfix"/>
-                        </group>
-						
+                        </group>						
 					</page>			
 				</xpath>
 			</field>	
