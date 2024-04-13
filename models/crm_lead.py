@@ -67,7 +67,7 @@ class CrmLead(models.Model):
     def write(self, vals):    
         _logger.error("GET WRitING USER %s", str(self.env.user.user_id))  
         context = http.request.env.context
-        if 'action' in context:    # Called from a Window action    
+        if 'uid' in context:    # Called from a Window action    
             if self.user_id != self.env.user and not self.env.user.has_group('sales_team.group_sale_manager') : 
                 raise UserError("You cannot edit Opp/Lead of other person")
             else:
